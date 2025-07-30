@@ -1,0 +1,46 @@
+class Solution {
+    public int getSecondLargest1(int[] arr) {
+        // code here
+        int[] temp = arr.clone();
+        Arrays.sort(temp);
+        int largest = temp[temp.length-1];
+        int secondlargest = 0;
+        for(int i=temp.length-2; i>=0; i--){
+            if(temp[i]!=largest){
+                secondlargest = temp[i];
+                return secondlargest;
+            }
+        }
+        return -1;
+    }
+    
+    public int getSecondLargest2(int[] arr) {
+        int largest = arr[0];
+        for(int i=0; i<arr.length; i++){
+            if(arr[i]>largest){
+                largest = arr[i];
+            }
+        }
+        int secondLargest = -1;
+        for(int i=0; i<arr.length; i++){
+            if(arr[i]>secondLargest && arr[i]!=largest){
+                secondLargest = arr[i];
+            }
+        }
+        return secondLargest==-1?-1:secondLargest;
+    }
+    
+    public int getSecondLargest(int[] arr) {
+        int firstLargest = -1;
+        int secondLargest = -1;
+        for(int i=0; i<arr.length; i++){
+            if(arr[i]>firstLargest){
+                secondLargest = firstLargest;
+                firstLargest = arr[i];
+            }else if(arr[i]>secondLargest && firstLargest!=arr[i]){
+                secondLargest = arr[i];
+            }
+        }
+        return secondLargest==-1?-1:secondLargest;
+    }
+}
